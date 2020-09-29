@@ -26,6 +26,7 @@
     --global-color-alpha-x-dark: #1B4186;
     --global-color-alpha-transparent: #3385ffbf;
     --global-color-alpha-x-transparent: #3385ff4d;
+    --global-color-alpha-x-dark-blue: #81adf0;
 
     --global-color-neutral-xxxx-light: #F5F6FA;
     --global-color-neutral-xxx-light: #E2E3E7;
@@ -45,6 +46,13 @@
 
     /* transitions */
     --global-transitionTiming-alpha: .1s ease-out;
+
+    --global-input-backgroundColor: White;
+    --global-input-color: var(--global-color-neutral-xxxx-dark);
+    --global-input-borderColor: var(--global-color-neutral-xxx-light);
+    --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
+    --global-input-focus-borderColor: var(--global-color-alpha);
+    --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
 
     /* Baseline settings */
     --global-baseline: 8px;         
@@ -601,10 +609,10 @@ input::placeholder {
     -moz-appearance: none;
     appearance: none;
     width: 100%;
-    border: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
+    border: var(--global-borderWidth) solid var(--global-input-borderColor);
     border-radius: var(--global-borderRadius);
-    color: var(--global-color-neutral-xxxx-dark);
-    background-color: White;
+    color: var(--global-input-color);
+    background-color: var(--global-input-backgroundColor);
     font-family: inherit;
     font-size: 16px;
     line-height: calc(var(--global-baseline) * 3);
@@ -614,13 +622,13 @@ input::placeholder {
 }
 
 .c-input:hover {
-    border-color: var(--global-color-neutral-xx-light);
+    border-color: var(--global-input-hover-borderColor);
 }
 
 .c-input:focus,
 .c-input:active {
-    border-color: var(--global-color-alpha);
-    box-shadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+    border-color: var(--global-input-focus-borderColor);
+    box-shadow: 0 0 0 3px var(--global-input-boxShadow);
 }
 
 /* option input for checkboxes and radio buttons */
@@ -628,7 +636,92 @@ input::placeholder {
 .c-option {
     margin-right: var(--global-whitespace-sm);
 }
+/*
+.c-option--hidden:checked + .c-custom-option {
+   
+      background-color: red;
+    
+  }
 
+  .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
+  
+    fill: blue;
+    
+  }
+*/
+
+
+
+  .c-custom-option{
+   display: flex;
+   align-items: center;
+  }
+
+  .c-custom-option__fake-input {
+      display: flex;
+      width: var(--global-whitespace-md);
+      height: var(--global-whitespace-md);
+      border: var( --global-borderWidth) solid var(--global-color-alpha-x-dark-blue);
+      margin-right: var(--global-baseline);
+      border-radius: var(--global-borderRadius);
+  }
+
+  .c-custom-option__fake-input:hover{
+      border: 1px solid #3385FF0C;
+    box-shadow: 0px 0px 3px 3px rgba(51,133,255,1);
+  }
+
+  .c-custom-option__fake-input--radio{
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+  }
+  .c-custom-option__fake-input--checkbox{
+    justify-content: center;
+    align-items: center;
+    fill: var(--global-color-alpha);
+  }
+
+ 
+
+  .c-custom-option__fake-input--checkbox .c-custom-option__symbol {
+    /* Stuff for the checkbox icon... */
+    width: 10px;
+    height: 10px;
+    fill: var(--global-color-alpha);
+  }
+  
+  .c-custom-option__fake-input--radio .c-custom-option__symbol {
+    /* Stuff for the radio button icon... */
+    width: 6px;
+    height: 6px;
+    background-color: var(--global-color-alpha);
+    border-radius: 50%;
+  }
+
+  .c-custom-option__symbol {
+    display: block;
+    opacity: 0;
+    /* transform: scale(0); */
+    will-change: opacity, transform;
+    transition: opacity 350ms ease-out; 
+   }
+
+  .c-option--hidden:checked + .c-custom-option
+  .c-custom-option__symbol{
+      opacity: 1;
+  }
+  
+  .c-option--hidden:hover + .c-custom-option:hover
+  .c-custom-option__symbol:hover{
+  }
+
+  .c-option-list{
+      margin-bottom: var(--global-whitespace);
+  }
+  .c-option-list__item{
+      margin-bottom: 12px;
+  }
 /*
     Component: Label
     ---
@@ -680,6 +773,11 @@ input::placeholder {
     box-shadow: none;
 }
 
+.c-custom-toggle__fake-input {
+    height: var(--global-whitespace);
+    width: 48px;
+    border-radius: 50%;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
